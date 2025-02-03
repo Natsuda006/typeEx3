@@ -1,15 +1,16 @@
 import { LineItem } from "./LineItem";
 
 export class ShoppingCart {
-  private createdDate: Date;
+  private created: string;
   private lineItems: LineItem[] = [];
 
-  constructor(createdDate: Date) {
-    this.createdDate = createdDate;
+  constructor(created: string) {
+    this.created = created;
+
   }
 
-  public getCreatedDate(): Date {
-    return this.createdDate;
+  public getCreated(): string {
+    return this.created;
   }
 
   public addLineItem(lineItem: LineItem): void {
@@ -21,12 +22,6 @@ export class ShoppingCart {
   }
 
   public toString(): string {
-    const lineItemDetails = this.lineItems
-      .map((item, index) => 
-        `${index + 1}. ${item.getProduct().getName()} - Quantity: ${item.getQuantity()}, Unit Price: ${item.getPrice()}, Total: ${item.getPrice() * item.getQuantity()}`
-      )
-      .join("\n");
-
-    return `ShoppingCart [createdDate: ${this.createdDate.toISOString()}, totalItems: ${this.lineItems.length}]\nLineItems:\n${lineItemDetails}`;
+   return `ShoppingCart [created: ${this.created}, lineItems: ${this.lineItems}`;
   }
 }
