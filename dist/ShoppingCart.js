@@ -1,25 +1,31 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ShoppingCart = void 0;
-class ShoppingCart {
-    constructor(createdDate) {
-        this.lineItems = [];
-        this.createdDate = createdDate;
-    }
-    getCreatedDate() {
-        return this.createdDate;
-    }
-    addLineItem(lineItem) {
-        this.lineItems.push(lineItem);
-    }
-    getLineItems() {
-        return this.lineItems;
-    }
-    toString() {
-        const lineItemDetails = this.lineItems
-            .map((item, index) => `${index + 1}. ${item.getProduct().getName()} - Quantity: ${item.getQuantity()}, Unit Price: ${item.getPrice()}, Total: ${item.getPrice() * item.getQuantity()}`)
-            .join("\n");
-        return `ShoppingCart [createdDate: ${this.createdDate.toISOString()}, totalItems: ${this.lineItems.length}]\nLineItems:\n${lineItemDetails}`;
-    }
+import { LineItem } from "./LineItem";
+
+export class ShoppingCart {
+  private created: string;
+  private lineItems: LineItem[] = [];
+
+  constructor(created: string) {
+    this.created = created;
+
+  }
+
+  public getCreated(): string {
+    return this.created;
+  }
+
+  public addLineItem(lineItem: LineItem): void {
+    this.lineItems.push(lineItem);
+  }
+
+  public getLineItems(): LineItem[] {
+    return this.lineItems;
+  }
+
+  public toString(): string {
+   return `ShoppingCart [created: ${this.created}, lineItems: ${this.lineItems}`;
+  }
 }
 exports.ShoppingCart = ShoppingCart;
